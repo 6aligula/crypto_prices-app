@@ -1,0 +1,18 @@
+/*Create the project with typescript*/
+npx react-native init CryptoMarket --template react-native-template-typescript
+
+/*Install react navigation*/
+npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native-stack
+
+/*Install library socket.io-client for client*/
+npm install socket.io-client -g
+
+/*Install axios for client*/
+npm install axios@0.25.0
+
+/*run the app on mobile phone*/
+npx react-native run-android
+
+npm install react@17.0.2
