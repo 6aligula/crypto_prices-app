@@ -43,7 +43,7 @@ const getPrices = () => {
             },
         })
         .then((response) => {
-            const priceList = (response.data.data).map((item) => {
+            const priceList = response.data.data.map((item) => {
                 return {
                     id: item.id,
                     name: item.slug,

@@ -1,8 +1,7 @@
-import { View, Text, Pressable, FlatList, StyleSheet, SafeAreaView } from 'react-native'
+import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Crypto } from '../modules/crypto';
 import { socket } from '../App';
-import { cryptoListHardCode } from '../dataPropbe'
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
     /*cryptoList is a constant and setCryptoList is a function*/
@@ -17,8 +16,9 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
 
     useEffect(() => {
         getData();
-    }, [cryptoListHardCode]);
+    }, []);
 
+    /*fin pruebas */
     const openCryptoDetail = (id: string) => {
         navigation.navigate('Detail', { id: id });
     };
@@ -26,33 +26,30 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     const renderItem = ({ item }: { item: Crypto }) => {
 
         return (
-            <React.Fragment key={item.id}>
 
-                <Pressable style={styles.containerItem}
-                    onPress={() => openCryptoDetail(item.id)}>
-                    {/* <View style={styles.coinName}> */}
-                    {/* <Image
+            <Pressable style={styles.containerItem}
+                onPress={() => openCryptoDetail(item.id)}>
+                {/* <View style={styles.coinName}> */}
+                {/* <Image
                         style={styles.image}
                         source={{ uri: item.image }}
                     /> */}
-                    {/* <View style={styles.containerNames}> */}
-                    <Text style={styles.text}>{item.name}</Text>
-                    {/* <Text style={styles.coinSymbol}>{item.symbol}</Text> */}
-                    {/* </View>
-                </View>
-                <View> */}
-                    {/* <Text style={styles.textPrice}>{item.current_price} $</Text> */}
+                {/* <View style={styles.containerNames}> */}
+                <Text style={styles.textName}>{item.name}</Text>
+                {/* <Text style={styles.coinSymbol}>{item.symbol}</Text> */}
+                {/* </View>
+                </View>*/}
+                <View>
                     <Text style={styles.textPrice}>{Math.round(item.price * 100) / 100} $</Text>
-                    {/* en el estilo hay un arreglo para el cambio de color entre verde y rojo */}
-                    {/* <Text style={[styles.pricePercentage, item.price_change_percentage_24h_in_currency > 0 ? styles.priceUp : styles.priceDown]}>{item.price_change_percentage_24h_in_currency} %</Text> */}
-                    {/* </View> */}
-                </Pressable>
-            </React.Fragment>
+
+                </View>
+            </Pressable>
 
         );
     };
     /*View en home screen*/
     return (
+
         <View style={styles.list}>
             <FlatList
                 data={cryptoList}
@@ -87,8 +84,9 @@ const styles = StyleSheet.create({
         //backgroundColor: 'black',
         backgroundColor: '#141414',
     },
-    text: {
-        color: '#ffffff'
+    textName: {
+        color: '#ffffff',
+        textTransform: 'capitalize',
     },
     image: {
         width: 30,
@@ -109,14 +107,5 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'right'
     },
-    //estilos para el cambio del precio de rojo a verde
-    pricePercentage: {
-        textAlign: 'right'
-    },
-    priceUp: {
-        color: 'green'
-    },
-    priceDown: {
-        color: 'red'
-    }
+
 });

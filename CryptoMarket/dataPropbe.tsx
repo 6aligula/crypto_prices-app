@@ -1,5 +1,5 @@
 import { Crypto } from "./modules/crypto";
-export const cryptoList: Crypto[] = [
+export const cryptoListHardCode: Crypto[] = [
     {
         id: '1',
         name: 'Bitcoin',
