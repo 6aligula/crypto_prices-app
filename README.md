@@ -2,7 +2,7 @@
 - RUN: npm install in backend and CryptoMarket folder.
 - RUN: npm start in backend folder
 - RUN: npx react-native run-android in CryptoMarket folder
-Enjoi :)
+- Enjoy it :)
 
 This a Main page
 ![Image text](https://github.com/6aligula/crypto_prices-app/blob/master/CryptoMarket/images/main.JPG)
