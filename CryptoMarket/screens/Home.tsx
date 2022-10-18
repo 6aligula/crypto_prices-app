@@ -1,22 +1,25 @@
-import { View, Text, Pressable, FlatList, StyleSheet } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, Pressable, FlatList, StyleSheet, ActivityIndicator } from 'react-native'
+import React, { useState } from 'react'
 import { Crypto } from '../modules/crypto';
 import { socket } from '../App';
 
 export const HomeScreen = ({ navigation }: { navigation: any }) => {
     /*cryptoList is a constant and setCryptoList is a function*/
     const [cryptoList, setCryptoList] = useState();
+    //let homeOK = loaded;
+    const [cryptoDataLoadedHome, setcryptoDataLoadedHome] = useState(false);
 
     const getData = () => {
         socket.on('crypto', data => {
-            setCryptoList(data);
             //console.log(data);
+            setCryptoList(data);
+            /*App await 7 seconds because the server send data every 6s: Solve warning when launch app*/
+            setTimeout(() => {
+                setcryptoDataLoadedHome(true);
+            }, 7000);
         });
     }
-
-    useEffect(() => {
-        getData();
-    }, []);
+    getData();
 
     /*fin pruebas */
     const openCryptoDetail = (id: string) => {
@@ -49,14 +52,20 @@ export const HomeScreen = ({ navigation }: { navigation: any }) => {
     };
     /*View en home screen*/
     return (
-
-        <View style={styles.list}>
-            <FlatList
-                data={cryptoList}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-        </View >
+        <>
+            {/*cryptoDataLoaded is true then show <View></View>  */}
+            {cryptoDataLoadedHome &&
+                (< View style={styles.list} >
+                    <FlatList
+                        data={cryptoList}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                    />
+                </View >
+                )}
+            {!cryptoDataLoadedHome && (
+                <ActivityIndicator size="large" color="#00ff00" />)}
+        </>
 
     );
 };
