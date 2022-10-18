@@ -5,9 +5,11 @@
 - Enjoy it :)
 
 - This a Main page
+
 ![Image text](https://github.com/6aligula/crypto_prices-app/blob/master/CryptoMarket/images/main.JPG)
 
 - This a detail of crypto
+
 ![Image text](https://github.com/6aligula/crypto_prices-app/blob/master/CryptoMarket/images/detailCrypto.JPG)
 
 Beginner/Intermediate React Native & NodeJS Real-Time Apps Developer.
